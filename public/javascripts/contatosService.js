@@ -3,6 +3,10 @@ angular.module("listaTele").factory("contatosAPI", function ($http, config) {
 		return $http.get(config.url + "/contatos/obter");
 	};
 
+	var _updateContatos = function(codigo){
+		return $http.put(config.url + "/contatos/" + codigo)
+	};
+
 	var _delContatos = function(id) {
 		return $http.delete(config.url + "/contatos/" + id);
 	};
@@ -13,6 +17,7 @@ angular.module("listaTele").factory("contatosAPI", function ($http, config) {
 
 	return {
 		getContatos: _getContatos,
+		updateContatos: _updateContatos,
 		delContatos: _delContatos,
 		saveContato: _saveContato
 	};

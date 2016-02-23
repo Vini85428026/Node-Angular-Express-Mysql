@@ -58,6 +58,10 @@ app.post('/contatos', function(req, res) {
     });  
 });
 
+app.put('/contatos/:codigo', function(req, res){
+   
+});
+
 app.delete('/contatos/:id', function(req, res){ 
   var id = req.params.id;
   connection.query("delete from lista where id="+id+";", id, function(err,result){

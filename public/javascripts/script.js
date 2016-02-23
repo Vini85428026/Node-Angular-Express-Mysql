@@ -28,6 +28,20 @@
 				});
 			};
 
+			$scope.editar = function(selec,cdg){
+				$scope.contato = null;
+				if(selec == 'edit'){
+					exibir(cdg);
+				}
+			};
+
+			var exibir = function(codigo){
+				contatosAPI.updateContatos(codigo).success(function (data){
+					$scope.lista = null;
+					carregarContatos(); 
+				});
+			};
+
 			$scope.ordenarPor = function(campo){
 				$scope.criterioOrdenacao = campo;
 				$scope.direcaoOrdenacao = !$scope.direcaoOrdenacao;
