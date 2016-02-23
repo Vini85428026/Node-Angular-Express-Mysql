@@ -1,0 +1,23 @@
+.jumbotron{
+		width: 500px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto; 
+	}
+	.organiza{
+		position: relative;
+		bottom: 2em;
+	}
+	.form-control{
+		margin-top: 4px;
+	}
+	table{
+		position: relative;
+		top: 6px;
+	}
+	table th{
+		text-align: center;
+	}
+	.selecionado{
+		background-color: gray;
+	}

@@ -1,0 +1,59 @@
+extends layout
+
+block content
+
+  div(ng-app="listaTele")
+    div(ng-controller="listaCtrl")
+      div.jumbotron
+        div.organiza
+          h4 {{app}}
+
+          hr
+
+          msg(title="Ops, deu um erro!") {{message}}
+
+          input(type="text" class="form-control" ng-model="buscarNome" placeholder="O que deseja consultar?")
+          table(ng-show="contatos.length > 0" class="table")
+            tr
+              th
+              th Serial
+              th
+                a(href="#" ng-click="ordenarPor('nome')") Nome
+              th
+                a(href="#" ng-click="ordenarPor('telefone')") Telefone
+              th
+                a(href="#" ng-click="ordenarPor('operadora')") Operadora
+              th
+                a(href="#" ng-click="ordenarPor('data')") Data
+              th
+
+            tr(ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:buscarNome | orderBy:criterioOrdenacao:direcaoOrdenacao")
+              td
+                input(type="checkbox" ng-model="contato.selecionado")
+              td {{contato.serial}}
+              td {{contato.nome | name | limite:13}}
+              td {{contato.telefone}}
+              td {{contato.operadora}}
+              td {{contato.data | date:'dd/MM/yyyy'}}
+              td
+                div(style="width:20px;height:20px;" ng-style="{'background-color':contato.cor}")
+
+          input(class="form-control" ng-model="contato.nome" placeholder="Nome" name="nome")
+          input(class="form-control" ng-model="contato.telefone" placeholder="Telefone" name="telefone")
+          input(mascaradata class="form-control" ng-model="contato.data" placeholder="Data" id="data" name="data")
+  
+          select(class="form-control" ng-model="contato.operadora")
+            option(value="") Selecione uma operadora
+            option(name="operadora" value="Claro") Claro
+            option(name="operadora" value="Tim") Tim
+            option(name="operadora" value="Oi") Oi
+            option(name="operadora" value="Vivo") Vivo
+
+          br
+
+          button(class="btn btn-info btn-block" ng-click="adicionarContatos(contato)" ng-disabled="!contato.nome || !contato.telefone") Adicionar Contatos
+          button(class="btn btn-success btn-block" ng-click="apagarContatos(contatos)" ng-show="mandar(contatos)") Apagar Contato
+
+          br
+          
+          {{10 | number:2}}
