@@ -16,7 +16,6 @@ block content
           table(ng-show="contatos.length > 0" class="table")
             tr
               th
-              th Serial
               th
                 a(href="#" ng-click="ordenarPor('nome')") Nome
               th
@@ -30,13 +29,13 @@ block content
             tr(ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:buscarNome | orderBy:criterioOrdenacao:direcaoOrdenacao")
               td
                 input(type="checkbox" ng-model="contato.selecionado")
-              td {{contato.serial}}
               td {{contato.nome | name | limite:13}}
               td {{contato.telefone}}
               td {{contato.operadora}}
               td {{contato.data | date:'dd/MM/yyyy'}}
               td
-                div(style="width:20px;height:20px;" ng-style="{'background-color':contato.cor}")
+                a(href="#")
+                  img(src="/images/edit.png" title="Editar")
 
           input(class="form-control" ng-model="contato.nome" placeholder="Nome" name="nome")
           input(class="form-control" ng-model="contato.telefone" placeholder="Telefone" name="telefone")
