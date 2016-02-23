@@ -10,7 +10,7 @@ block content
 
           hr
 
-          msg(title="Ops, deu um erro!") {{message}}
+          h3 {{message}}
 
           input(type="text" class="form-control" ng-model="buscarNome" placeholder="O que deseja consultar?")
           table(ng-show="contatos.length > 0" class="table")

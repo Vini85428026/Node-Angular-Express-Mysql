@@ -5,13 +5,6 @@
 			
 			$scope.app = "Lista Telefônica";
 			$scope.contatos = [];
-			$scope.operadoras = [];
-
-			var carregarOperadoras = function(){
-				operadorasAPI.getOperadoras().success(function(data){
-					$scope.operadoras = data;
-				});
-			};
 
 			var carregarContatos = function(){
 				contatosAPI.getContatos().success(function(data){
@@ -24,8 +17,8 @@
 			$scope.apagarContatos = function (contatos){
 				$scope.contatos=contatos.filter(function (cont){
 					if (!cont.selecionado){
-						return cont;
 						carregarContatos();
+						return cont;
 					}
 				});
 			};
@@ -51,6 +44,5 @@
 			}
 
 			carregarContatos();
-			carregarOperadoras();
 
 		});	
