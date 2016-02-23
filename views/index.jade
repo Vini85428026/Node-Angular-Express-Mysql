@@ -16,7 +16,6 @@ block content
           table(ng-show="contatos.length > 0" class="table")
             tr
               th
-              th
                 a(href="#" ng-click="ordenarPor('nome')") Nome
               th
                 a(href="#" ng-click="ordenarPor('telefone')") Telefone
@@ -25,10 +24,9 @@ block content
               th
                 a(href="#" ng-click="ordenarPor('data')") Data
               th
+              th
 
-            tr(ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:buscarNome | orderBy:criterioOrdenacao:direcaoOrdenacao")
-              td
-                input(type="checkbox" ng-model="contato.selecionado")
+            tr(ng-repeat="contato in contatos | filter:buscarNome | orderBy:criterioOrdenacao:direcaoOrdenacao")
               td {{contato.nome | name | limite:13}}
               td {{contato.telefone}}
               td {{contato.operadora}}
@@ -36,6 +34,9 @@ block content
               td
                 a(href="#")
                   img(src="/images/edit.png" title="Editar")
+              td
+                a(href="#" ng-click="apagarContatos(contato.id)")
+                  img(src="/images/exc.png" title="Excluir")
 
           input(class="form-control" ng-model="contato.nome" placeholder="Nome" name="nome")
           input(class="form-control" ng-model="contato.telefone" placeholder="Telefone" name="telefone")
@@ -51,8 +52,7 @@ block content
           br
 
           button(class="btn btn-info btn-block" ng-click="adicionarContatos(contato)" ng-disabled="!contato.nome || !contato.telefone") Adicionar Contatos
-          button(class="btn btn-success btn-block" ng-click="apagarContatos(contatos)" ng-show="mandar(contatos)") Apagar Contato
-
+          
           br
           
-          {{10 | number:2}}
+          h4 {{10 | number:2}}

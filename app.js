@@ -30,6 +30,16 @@ app.all('*', function(req, res, next) {
   next();
 });
 
+app.get('/contatos/obter', function(req, res) {
+  connection.query("select * from lista;", function(err, result){
+    if(err){
+        console.error(err);
+        return;
+    }
+    res.json(result);
+  });
+});
+
 app.post('/contatos', function(req, res) {
 
     var contato = {
@@ -48,11 +58,12 @@ app.post('/contatos', function(req, res) {
     });  
 });
 
-app.get('/contatos/obter', function(req, res) {
-  connection.query("select * from lista;", function(err, result){
+app.delete('/contatos/:id', function(req, res){ 
+  var id = req.params.id;
+  connection.query("delete from lista where id="+id+";", id, function(err,result){
     if(err){
-        console.error(err);
-        return;
+      console.error(err);
+      return;
     }
     res.json(result);
   });
@@ -80,10 +91,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -94,8 +101,6 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

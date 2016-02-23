@@ -14,12 +14,9 @@
 				});
 			};
 
-			$scope.apagarContatos = function (contatos){
-				$scope.contatos=contatos.filter(function (cont){
-					if (!cont.selecionado){
-						carregarContatos();
-						return cont;
-					}
+			$scope.apagarContatos = function (id){
+				contatosAPI.delContatos(id).success(function (data){
+					carregarContatos();
 				});
 			};
 
@@ -30,13 +27,6 @@
 					carregarContatos();
 				});
 			};
-
-			$scope.mandar = function(contatos){
-				var a = contatos.some(function(c){
-					return c.selecionado;
-				});
-				return a;
-			}
 
 			$scope.ordenarPor = function(campo){
 				$scope.criterioOrdenacao = campo;
