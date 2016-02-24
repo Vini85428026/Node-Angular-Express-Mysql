@@ -4,7 +4,11 @@ angular.module("listaTele").factory("contatosAPI", function ($http, config) {
 	};
 
 	var _updateContatos = function(codigo){
-		return $http.put(config.url + "/contatos/" + codigo)
+		return $http.post(config.url + "/contatos/" + codigo)
+	};
+
+	var _salvarEdicao = function(list){
+		return $http.post(config.url + "/contatos/editar", list)
 	};
 
 	var _delContatos = function(id) {
@@ -18,6 +22,7 @@ angular.module("listaTele").factory("contatosAPI", function ($http, config) {
 	return {
 		getContatos: _getContatos,
 		updateContatos: _updateContatos,
+		salvarEdicao: _salvarEdicao,
 		delContatos: _delContatos,
 		saveContato: _saveContato
 	};

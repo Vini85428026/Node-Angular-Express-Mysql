@@ -4,7 +4,7 @@
 		angular.module("listaTele").controller("listaCtrl", function ($scope, $filter, contatosAPI, operadorasAPI, serialGenerator) /*contatosAPI é o nome da factory*/{
 			
 			$scope.app = "Lista Telefônica";
-			$scope.contatos = [];
+			$scope.contatos = [];			
 
 			var carregarContatos = function(){
 				contatosAPI.getContatos().success(function(data){
@@ -28,17 +28,18 @@
 				});
 			};
 
-			$scope.editar = function(selec,cdg){
-				$scope.contato = null;
+			$scope.exibireditar = function(selec,cdg){
 				if(selec == 'edit'){
-					exibir(cdg);
+					contatosAPI.updateContatos(cdg).success(function (data){
+						$scope.lista = data.result[0];
+					});
 				}
 			};
 
-			var exibir = function(codigo){
-				contatosAPI.updateContatos(codigo).success(function (data){
-					$scope.lista = null;
-					carregarContatos(); 
+			$scope.editarContatos = function(valores){
+				contatosAPI.salvarEdicao(valores).success(function (data){
+					location.href="http://localhost:3000/";
+					carregarContatos();
 				});
 			};
 

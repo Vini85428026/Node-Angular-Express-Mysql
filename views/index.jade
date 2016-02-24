@@ -32,22 +32,22 @@ block content
               td {{contato.operadora}}
               td {{contato.data | date:'dd/MM/yyyy'}}
               td
-                a(href="#" ng-click="editar('edit',contato.id)" data-toggle="modal" data-target=".bs-example-modal-lg")
+                a(href="#" ng-click="exibireditar('edit',contato.id)" data-toggle="modal" data-target=".bs-example-modal-lg")
                   img(src="/images/edit.png" title="Editar")
               td
                 a(href="#" ng-click="apagarContatos(contato.id)")
                   img(src="/images/exc.png" title="Excluir")
 
-          input(class="form-control" ng-model="contato.nome" placeholder="Nome" name="nome")
-          input(class="form-control" ng-model="contato.telefone" placeholder="Telefone" name="telefone")
+          input(class="form-control" ng-model="contato.nome" placeholder="Nome")
+          input(class="form-control" ng-model="contato.telefone" placeholder="Telefone")
           input(mascaradata class="form-control" ng-model="contato.data" placeholder="Data" id="data" name="data")
   
           select(class="form-control" ng-model="contato.operadora")
             option(value="") Selecione uma operadora
-            option(name="operadora" value="Claro") Claro
-            option(name="operadora" value="Tim") Tim
-            option(name="operadora" value="Oi") Oi
-            option(name="operadora" value="Vivo") Vivo
+            option(value="Claro") Claro
+            option(value="Tim") Tim
+            option(value="Oi") Oi
+            option(value="Vivo") Vivo
 
           br
 
@@ -70,31 +70,31 @@ block content
                     div.col-md-2
                       label(class="form-control") Nome:
                     div.col-md-4
-                      input(class="form-control" ng-model="lista.nome" placeholder="Nome" name="nomeEdit")
+                      input(class="form-control" ng-model="lista.nome")
 
                     div.col-md-2
                       label(class="form-control") Telefone:
                     div.col-md-4
-                      input(class="form-control" ng-model="lista.telefone" placeholder="Telefone" name="telefoneEdit")  
+                      input(class="form-control" ng-model="lista.telefone" placeholder="Telefone")  
 
                   div.row
                     div.col-md-2
                       label(class="form-control") Data:
                     div.col-md-4
-                      input(mascaradata class="form-control" ng-model="lista.data" placeholder="Data" id="data" name="dataEdit")
+                      input(mascaradata class="form-control" ng-model="lista.data" placeholder="Data" id="data" name="data")
 
                     div.col-md-2
                       label(class="form-control") Operadora:
                     div.col-md-4
                       select(class="form-control" ng-model="lista.operadora")
                         option(value="") Selecione uma operadora
-                        option(name="operadoraEdit" value="Claro") Claro
-                        option(name="operadoraEdit" value="Tim") Tim
-                        option(name="operadoraEdit" value="Oi") Oi
-                        option(name="operadoraEdit" value="Vivo") Vivo
+                        option(value="Claro") Claro
+                        option(value="Tim") Tim
+                        option(value="Oi") Oi
+                        option(value="Vivo") Vivo
 
                 div.modal-footer
-                  button(type="button" class="btn btn-primary" ng-click="adicionarContatos(contato)" ng-disabled="!lista.nome || !lista.telefone") Salvar
+                  button(type="button" class="btn btn-primary" ng-click="editarContatos(lista)" ng-disabled="!lista.nome || !lista.telefone") Salvar
                   button(type="button" class="btn btn-default" data-dismiss="modal") Cancelar
 
 

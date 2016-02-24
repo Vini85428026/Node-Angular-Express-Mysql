@@ -40,6 +40,26 @@ app.get('/contatos/obter', function(req, res) {
   });
 });
 
+app.post('/contatos/editar', function(req,res){
+  var id = req.body.id;
+  var listas = {
+    nome:req.body.nome,
+    telefone:req.body.telefone,
+    data:req.body.data,
+    operadora:req.body.operadora
+  };
+    
+  connection.query("UPDATE lista SET ? where id="+id+";", listas, function(err,result){
+    if(err){
+      console.error(err);
+      return;
+    }
+
+    res.json(result);
+  });
+});
+
+
 app.post('/contatos', function(req, res) {
 
     var contato = {
@@ -58,8 +78,15 @@ app.post('/contatos', function(req, res) {
     });  
 });
 
-app.put('/contatos/:codigo', function(req, res){
-   
+app.post('/contatos/:codigo', function(req, res){
+   var codigo = req.params.codigo;
+   connection.query("select * from lista where id="+codigo+";", codigo, function(err,result){
+      if (err) {
+        console.error(err);
+        return;
+      }
+      res.json({result});
+   });
 });
 
 app.delete('/contatos/:id', function(req, res){ 
