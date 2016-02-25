@@ -7,8 +7,13 @@ angular.module("listaTele").directive("mascaraphone", function(){
 				if(fone.length > 1){
 					fone = "(" + fone.substring(0,2) + ")" + fone.substring(2);
 				}
-				if(fone.length > 7){
-					fone = fone.substring(0,8) + "-" + fone.substring(8); //quando for de 0 a 3(0,1,2,3 caract.) ai implementa "-" 
+
+				if(fone.length > 4){
+					fone = fone.substring(0,4) + " " + fone.substring(4);
+				}
+
+				if(fone.length > 9){
+					fone = fone.substring(0,9) + "-" + fone.substring(9); //quando for de 0 a 3(0,1,2,3 caract.) ai implementa "-" 
 				}
 				return fone;
 				
