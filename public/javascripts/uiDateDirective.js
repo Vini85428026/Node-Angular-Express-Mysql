@@ -27,7 +27,7 @@ angular.module("listaTele").directive("mascaradata", function($filter){
 
 			ctrl.$formatters.push(function (value) {
 				return $filter("date")(value, "dd/MM/yyyy");
-			});
+			});	
 		}
 	};
 });

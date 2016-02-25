@@ -26,7 +26,7 @@ block content
               th
               th
 
-            tr(ng-repeat="contato in contatos | filter:buscarNome | orderBy:criterioOrdenacao:direcaoOrdenacao")
+            tr(ng-repeat="contato in contatos | filter:{nome:buscarNome} | orderBy:criterioOrdenacao:direcaoOrdenacao")
               td {{contato.nome | name | limite:13}}
               td {{contato.telefone}}
               td {{contato.operadora}}
@@ -39,7 +39,7 @@ block content
                   img(src="/images/exc.png" title="Excluir")
 
           input(class="form-control" ng-model="contato.nome" placeholder="Nome")
-          input(class="form-control" ng-model="contato.telefone" placeholder="Telefone")
+          input(mascaraphone class="form-control" ng-model="contato.telefone" placeholder="Telefone" maxlength="13")
           input(mascaradata class="form-control" ng-model="contato.data" placeholder="Data" id="data" name="data")
   
           select(class="form-control" ng-model="contato.operadora")
