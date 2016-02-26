@@ -4,7 +4,7 @@
 		angular.module("listaTele").controller("listaCtrl", function ($scope, $filter, contatosAPI, operadorasAPI, serialGenerator) /*contatosAPI é o nome da factory*/{
 			
 			$scope.app = "Lista Telefônica";
-			$scope.contatos = [];			
+			$scope.contatos = [];	
 
 			var carregarContatos = function(){
 				contatosAPI.getContatos().success(function(data){
